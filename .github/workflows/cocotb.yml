@@ -3,7 +3,9 @@ on: [push, pull_request]
 jobs:
   cocotb:
     runs-on: ubuntu-latest
-    container: ghcr.io/builderdev212/cocotb-runner
+    container:
+      image: ghcr.io/builderdev212/cocotb-runner
+      options: --user root
     steps:
       - uses: actions/checkout@v4
       - run: pytest
