@@ -11,7 +11,10 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: ghcr.io/builderdev212/cocotb-runner:latest
+          options: -v ${{ github.workspace }}:/usr/src/verilogbits
           run: |
+            ls
+            cd verilogbits
             pytest
 # jobs:
 #   cocotb-container:
