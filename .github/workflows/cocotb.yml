@@ -1,13 +1,20 @@
 name: pytest-cocotb
 on: [push, pull_request]
 jobs:
-  cocotb:
+  # cocotb:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3   
+  #     - name: Run pytest
+  #       uses: builderdev212/cocotb-runner
+  #         run: pytest -n 10
+  container-test-job:
     runs-on: ubuntu-latest
+    container:
+      image: builderdev212/cocotb-runner
+      volumes:
+        - my_docker_volume:/usr/src/verilogbits
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3   
-      - name: Run pytest
-        uses: addnab/docker-run-action@v3
-        with:
-          image: ghcr.io/builderdev212/cocotb-runner:latest
-          run: pytest -n 10
+      - name: Check for dockerenv file
+        run: cd /usr/src/verilogbits && pytest
