@@ -13,7 +13,7 @@ jobs:
           image: ghcr.io/builderdev212/cocotb-runner:latest
           options: -v ${{ github.workspace }}:/usr/src/verilogbits
           run: |
-            ls
+            . .venv/bin/activate && /bin/bash
             cd verilogbits
             pytest
 # jobs:
