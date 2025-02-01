@@ -1,0 +1,17 @@
+name: cocotb
+on: [push, pull_request]
+jobs:
+  cocotb-container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run pytest in container
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ghcr.io/builderdev212/cocotb-runner:latest
+          options: -v ${{ github.workspace }}:/usr/src/verilogbits
+          run: |
+            . .venv/bin/activate && /bin/bash
+            cd verilogbits
+            pytest
