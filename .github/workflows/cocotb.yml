@@ -1,10 +1,13 @@
 name: pytest-cocotb
 on: [push, pull_request]
 jobs:
-  container-test-job:
+  cocotb:
     runs-on: ubuntu-latest
-    container: 
-      image: ghcr.io/builderdev212/cocotb-runner
     steps:
-      - name: Run testbenches
-        run: pytest -n 10
+      - name: Checkout code
+        uses: actions/checkout@v3   
+      - name: Run pytest
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ghcr.io/builderdev212/cocotb-runner:latest
+          run: pytest -n 10
