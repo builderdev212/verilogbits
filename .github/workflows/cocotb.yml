@@ -6,8 +6,7 @@ jobs:
     container: ghcr.io/builderdev212/cocotb-runner
     steps:
       - use: ghcr.io/builderdev212/cocotb-runner
-          run: git clone https://github.com/builderdev212/verilogbits
-          run: pytest
+        run: git clone https://github.com/builderdev212/verilogbits && pytest
   # cocotb:
   #   runs-on: ubuntu-latest
   #   steps:
