@@ -5,9 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/builderdev212/cocotb-runner
-      options: --user root
+      env: 
+        actor: ${{ github.actor }}
     steps:
       - uses: actions/checkout@v4
+      - run: ls
       - run: pytest
   # cocotb:
   #   runs-on: ubuntu-latest
