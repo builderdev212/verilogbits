@@ -1,13 +1,12 @@
 name: cocotb
-on: push
+on: [push, pull_request]
 jobs:
   cocotb-container:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-  
-      - name: Run step in container
+      - name: Run pytest in container
         uses: addnab/docker-run-action@v3
         with:
           image: ghcr.io/builderdev212/cocotb-runner:latest
@@ -16,45 +15,3 @@ jobs:
             . .venv/bin/activate && /bin/bash
             cd verilogbits
             pytest
-# jobs:
-#   cocotb-container:
-#     runs-on: ubuntu-latest
-#     container: ghcr.io/builderdev212/cocotb-runner:latest
-#     steps:
-#       - run: git clone https://github.com/builderdev212/verilogbits
-#       - run: pytest
-  # cocotb:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3   
-  #     - name: Run pytest
-  #       uses: builderdev212/cocotb-runner
-  #         run: pytest -n 10
-  # container-test-job:
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: ghcr.io/builderdev212/cocotb-runner
-  #     volumes:
-  #       - my_docker_volume:/usr/src/verilogbits
-  #   steps:
-  #     - name: Check for dockerenv file
-  #       run: cd /usr/src/verilogbits && pytest
-
-
-# .docker_tmpl: &container_job
-#    tags:
-#      - podman-runner
-#    image: cocotb-dev:latest
-
-# ex:
-#   <<: *container_job
-#   rules:
-#     - if: $CI_COMMIT_BRANCH
-#       changes:
-#         paths:
-#   stage: test
-#   script:
-#     - cd 
-#     - pytest -n 10 --retries 2
-
