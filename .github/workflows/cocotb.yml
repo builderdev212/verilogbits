@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run testbenches
-        uses: ghcr.io/builderdev212/cocotb-runner
-          run: git clone https://github.com/builderdev212/verilogbits && pytest
+        uses: builderdev212/cocotb-runner@latest
+      - run: git clone https://github.com/builderdev212/verilogbits && pytest
   # cocotb:
   #   runs-on: ubuntu-latest
   #   steps:
