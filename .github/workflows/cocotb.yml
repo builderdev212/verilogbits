@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/builderdev212/cocotb-runner:latest
     steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
       - run: git clone https://github.com/builderdev212/verilogbits && pytest
   # cocotb:
   #   runs-on: ubuntu-latest
