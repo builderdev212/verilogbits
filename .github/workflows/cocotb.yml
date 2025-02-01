@@ -1,6 +1,12 @@
 name: pytest-cocotb
 on: [push, pull_request]
 jobs:
+  cocotb:
+    runs-on: ubuntu-latest
+    container: ghcr.io/builderdev212/cocotb-runner
+    steps:
+      - uses: actions/checkout@v4
+      - run: pytest
   # cocotb:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -9,12 +15,30 @@ jobs:
   #     - name: Run pytest
   #       uses: builderdev212/cocotb-runner
   #         run: pytest -n 10
-  container-test-job:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/builderdev212/cocotb-runner
-      volumes:
-        - my_docker_volume:/usr/src/verilogbits
-    steps:
-      - name: Check for dockerenv file
-        run: cd /usr/src/verilogbits && pytest
+  # container-test-job:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: ghcr.io/builderdev212/cocotb-runner
+  #     volumes:
+  #       - my_docker_volume:/usr/src/verilogbits
+  #   steps:
+  #     - name: Check for dockerenv file
+  #       run: cd /usr/src/verilogbits && pytest
+
+
+# .docker_tmpl: &container_job
+#    tags:
+#      - podman-runner
+#    image: cocotb-dev:latest
+
+# ex:
+#   <<: *container_job
+#   rules:
+#     - if: $CI_COMMIT_BRANCH
+#       changes:
+#         paths:
+#   stage: test
+#   script:
+#     - cd 
+#     - pytest -n 10 --retries 2
+
