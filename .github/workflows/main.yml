@@ -9,3 +9,18 @@ jobs:
       - uses: rickstaa/action-black@v1
         with:
           black_args: ". --check"
+
+name: CI
+on:
+  push:
+    branches: [ main ]
+jobs:
+  container-test-job:
+    runs-on: debian:12-slim
+    container: 
+      image: ghcr.io/builderdev212/cocotb-runner
+      volumes:
+        - ${PWD}:/usr/src/verilogbits
+    steps:
+      - name: Run testbenches
+        run: cd verilogbits && pytest -n 10

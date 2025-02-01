@@ -1,12 +1,4 @@
-CONTAINER_IMG := cocotb-dev
-CONTAINER_FILE := Containerfile
-
-build::
-	@podman build -f ${CONTAINER_FILE} -t ${CONTAINER_IMG} "${PWD}"
-
-# publish::
-# 	@podman login
-# 	@podman push ${CONTAINER_IMG}:latest
+CONTAINER_IMG := ghcr.io/builderdev212/cocotb-runner
 
 run::
 	@podman run -it --rm \
