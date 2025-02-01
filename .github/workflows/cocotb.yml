@@ -1,13 +1,25 @@
-name: pytest-cocotb
-on: [push, pull_request]
+name: cocotb
+on: push
 jobs:
-  cocotb:
+  cocotb-container:
     runs-on: ubuntu-latest
-    container: ghcr.io/builderdev212/cocotb-runner:latest
     steps:
-      - name: Check for dockerenv file
-        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
-      - run: git clone https://github.com/builderdev212/verilogbits && pytest
+      - name: Checkout code
+        uses: actions/checkout@v4
+  
+      - name: Run step in container
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ghcr.io/builderdev212/cocotb-runner:latest
+          run: |
+            pytest
+# jobs:
+#   cocotb-container:
+#     runs-on: ubuntu-latest
+#     container: ghcr.io/builderdev212/cocotb-runner:latest
+#     steps:
+#       - run: git clone https://github.com/builderdev212/verilogbits
+#       - run: pytest
   # cocotb:
   #   runs-on: ubuntu-latest
   #   steps:
