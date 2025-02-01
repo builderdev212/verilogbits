@@ -21,4 +21,6 @@ class TB:
 
     async def zero_check(self):
         if int(self.zero.value) != 0:
-            raise DataError(f"Output should always be 0, got {self.zero.value} instead.")
+            raise DataError(
+                f"Output should always be 0, got {self.zero.value} instead."
+            )
