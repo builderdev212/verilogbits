@@ -3,13 +3,9 @@ on: [push, pull_request]
 jobs:
   cocotb:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/builderdev212/cocotb-runner
-      env: 
-        actor: ${{ github.actor }}
+    container: ghcr.io/builderdev212/cocotb-runner
     steps:
-      - uses: actions/checkout@main
-      - run: ls
+      - run: git clone https://github.com/builderdev212/verilogbits
       - run: pytest
   # cocotb:
   #   runs-on: ubuntu-latest
