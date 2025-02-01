@@ -1,7 +1,5 @@
 name: pytest-cocotb
-on:
-  push:
-    branches: [ main ]
+on: [push, pull_request]
 jobs:
   container-test-job:
     runs-on: debian:12-slim
