@@ -12,7 +12,7 @@ jobs:
   container-test-job:
     runs-on: ubuntu-latest
     container:
-      image: builderdev212/cocotb-runner
+      image: ghcr.io/builderdev212/cocotb-runner
       volumes:
         - my_docker_volume:/usr/src/verilogbits
     steps:
