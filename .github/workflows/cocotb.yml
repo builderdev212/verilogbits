@@ -3,9 +3,8 @@ on: [push, pull_request]
 jobs:
   cocotb:
     runs-on: ubuntu-latest
+    container: builderdev212/cocotb-runner:latest
     steps:
-      - name: Run testbenches
-        uses: builderdev212/cocotb-runner@latest
       - run: git clone https://github.com/builderdev212/verilogbits && pytest
   # cocotb:
   #   runs-on: ubuntu-latest
