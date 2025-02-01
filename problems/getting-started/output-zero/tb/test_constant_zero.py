@@ -5,20 +5,20 @@ from cocotb.clock import Timer
 from cocotb.regression import TestFactory
 from cocotb_test.simulator import run
 
-from constant_one import TB
+from constant_zero import TB
 
 
-async def output_stays_one(dut):
+async def output_stays_zero(dut):
     tb = TB(dut)
 
     tb.log.info("Checking output value...")
     # Await one nanosecond so the model can start.
     await Timer(1, units="ns")
-    tb.one_check()
+    tb.zero_check()
 
 
 if cocotb.SIM_NAME:
-    test1 = TestFactory(output_stays_one)
+    test1 = TestFactory(output_stays_zero)
     test1.generate_tests()
 
 # cocotb-test
@@ -30,8 +30,8 @@ parameter_list = [{}]
 
 
 @pytest.mark.parametrize("parameters", parameter_list)
-def test_constant_one(request, parameters):
-    dut = "constant_one"
+def test_constant_zero(request, parameters):
+    dut = "constant_zero"
     module = os.path.splitext(os.path.basename(__file__))[0]
     toplevel = dut
 

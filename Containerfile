@@ -1,5 +1,5 @@
 # Setup dependancy versions
-ARG DEBIAN_VERSION=12
+ARG DEBIAN_VERSION=12-slim
  
 FROM docker.io/library/debian:${DEBIAN_VERSION}
  
@@ -23,14 +23,7 @@ WORKDIR /usr/src/verilator
 RUN git checkout v${VERILATOR_VERSION}
 RUN autoconf && ./configure && make -j `nproc` && make install
 WORKDIR /usr/src/
- 
-# compile and install iverilog
-WORKDIR /usr/src/
-RUN git clone https://github.com/steveicarus/iverilog.git
-WORKDIR /usr/src/iverilog/
-RUN sh autoconf.sh && ./configure --prefix /usr && make && make install
- 
-WORKDIR /usr/src/
+
 # setup python virtual environment
 ENV VIRTUAL_ENV=.venv
 RUN python3 -m venv ${VIRTUAL_ENV}
