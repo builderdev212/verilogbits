@@ -2,7 +2,7 @@ name: pytest-cocotb
 on: [push, pull_request]
 jobs:
   container-test-job:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     container: 
       image: ghcr.io/builderdev212/cocotb-runner
       volumes:
