@@ -1,5 +1,11 @@
 name: black
-on: [push, pull_request]
+on:
+  push:
+    - "problems/**.py"
+    - .github/workflows/black.yml
+  pull_request:
+    - "problems/**.py"
+    - .github/workflows/black.yml
 jobs:
   linter_name:
     name: runner / black formatter

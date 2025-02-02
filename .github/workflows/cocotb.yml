@@ -1,5 +1,13 @@
 name: cocotb
-on: [push, pull_request]
+on:
+  push:
+    - "problems/**.v"
+    - "problems/**.py"
+    - .github/workflows/cocotb.yml
+  pull_request:
+    - "problems/**.v"
+    - "problems/**.py"
+    - .github/workflows/cocotb.yml
 jobs:
   cocotb-container:
     runs-on: ubuntu-latest
