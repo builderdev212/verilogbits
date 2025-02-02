@@ -5,18 +5,28 @@ import cocotb
 from cocotb.regression import TestFactory
 from cocotb_test.simulator import run
 
-from constant_zero import TB
+from multi_wire import TB
 
 
-async def output_stays_zero(dut):
+async def output_stays_equal(dut):
     tb = TB(dut)
 
+    test_vals = [
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 0, 0],
+        [0, 1, 1],
+    ]
+
     tb.log.info("Checking output value...")
-    tb.zero_check()
+    
+    for i in range(len(test_vals)):
+        tb.set_input_vals(test_vals[i])
+        tb.is_equal_check()
 
 
 if cocotb.SIM_NAME:
-    test1 = TestFactory(output_stays_zero)
+    test1 = TestFactory(output_stays_equal)
     test1.generate_tests()
 
 # cocotb-test
@@ -29,7 +39,7 @@ parameter_list = [{}]
 
 @pytest.mark.parametrize("parameters", parameter_list)
 def test_constant_zero(request, parameters):
-    dut = "constant_zero"
+    dut = "multi_wire"
     module = os.path.splitext(os.path.basename(__file__))[0]
     toplevel = dut
 

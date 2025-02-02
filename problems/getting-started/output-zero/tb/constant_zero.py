@@ -1,4 +1,5 @@
 import logging
+from cocotb.clock import Timer
 
 
 class DataError(Exception):
@@ -20,6 +21,7 @@ class TB:
         self.zero = self.dut.zero
 
     async def zero_check(self):
+        await Timer(1, units="ns")
         if int(self.zero.value) != 0:
             raise DataError(
                 f"Output should always be 0, got {self.zero.value} instead."
