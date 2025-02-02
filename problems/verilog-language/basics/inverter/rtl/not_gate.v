@@ -3,10 +3,10 @@
 `default_nettype none
 
 module not_gate (
-    input  wire in,
-    output wire out
+    input  wire i,
+    output wire o
 );
 
-	assign out = !in;
+	assign o = !i;
 
 endmodule

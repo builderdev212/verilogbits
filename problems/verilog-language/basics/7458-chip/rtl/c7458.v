@@ -2,7 +2,7 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-module 7458 ( 
+module c7458 ( 
     input  wire p1a,
     input  wire p1b,
     input  wire p1c,
