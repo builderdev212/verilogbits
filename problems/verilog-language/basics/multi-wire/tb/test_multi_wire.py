@@ -19,7 +19,7 @@ async def output_stays_equal(dut):
     ]
 
     tb.log.info("Checking output value...")
-    
+
     for i in range(len(test_vals)):
         tb.set_input_vals(test_vals[i])
         tb.is_equal_check()
