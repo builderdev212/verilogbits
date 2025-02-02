@@ -1,13 +1,9 @@
 name: cocotb
 on:
   push:
-    - "problems/**.v"
-    - "problems/**.py"
-    - .github/workflows/cocotb.yml
+    paths: ["problems/**.v", "problems/**.py", ".github/workflows/cocotb.yml"]
   pull_request:
-    - "problems/**.v"
-    - "problems/**.py"
-    - .github/workflows/cocotb.yml
+    paths: ["problems/**.v", "problems/**.py", ".github/workflows/cocotb.yml"]
 jobs:
   cocotb-container:
     runs-on: ubuntu-latest
